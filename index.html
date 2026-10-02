@@ -270,15 +270,8 @@ function downloadVCard(){
     'END:VCARD'
   ].join('\r\n');
 
-  const blob = new Blob([vcard], {type:'text/vcard'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'KTI_Soluciones.vcf';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  const dataUrl = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
+  window.location.href = dataUrl;
 }
 
 function copyFallback(event, value, msg){
